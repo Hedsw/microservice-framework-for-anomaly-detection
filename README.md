@@ -1,27 +1,17 @@
 # microservice_ml
 
-TO RUN CODES.. API DESCRIPTION:
-
-Strategy - RandomForest
- http://0.0.0.0:5000/api/strategy/randomforest
-
-Strategy - SVM
- http://0.0.0.0:5000/api/strategy/svm
+TO Port Numbers..
 
 File Upload 
- http://0.0.0.0:5009/uploader
+ http://0.0.0.0:5009
 
-RandomForest 
- http://0.0.0.0:5002/api/randomforest
+Anomaly detection
+ http://0.0.0.0:5010
 
-SVM
- http://0.0.0.0:5003/api/svm
-
-Preprocess - Logistic regression
- http://0.0.0.0:5001/api/preprocess/preprocess2
- 
-Preprocess - lasso regression
- http://0.0.0.0:5001/api/preprocess/preprocess1
+Preprocess 
+ http://0.0.0.0:5011
  
 Evaluation - Data Vis 
- http://0.0.0.0:5005/api/evaluation# microservice-framework-for-anomaly-detection
+ http://0.0.0.0:5005
+ 
+ # microservice-framework-for-anomaly-detection
