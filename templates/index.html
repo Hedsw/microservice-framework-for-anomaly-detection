@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+<head>
+  <meta charset="UTF-8">
+  <title>ML Microservice</title>
+</head>
+
+<body>
+  <h2>A microservice-oriented framework for anomaly detection</h2>
+  -------------------------------------------------------------------------------------
+  <h2>Uploading dataset</h2>
+  <form action="http://localhost:5009/api/fileUpload" method="POST" enctype="multipart/form-data">    
+    <input type="file" name="File" />
+    <input type="submit" value="Submit" />
+  </form>
+  -------------------------------------------------------------------------------------
+  <h2>Preprocess</h2>
+  <form action="http://localhost:5011/api/preprocess" method="GET">
+    <div>
+      <!-- When I click this button, run Lasso on anomaly_detection code-->
+      <input type="checkbox" id="Lasso" name="process" value="Lasso">
+      <label for="Lasso">Lasso</label>
+    </div>
+    <br>
+    <!--
+    <div>
+      <input type="checkbox" id="LogisticRegression" name="process" value="RG">
+      <label for="LogisticRegression">Ridge Regression</label>
+    </div>
+    <br><br>
+    -->
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+  -------------------------------------------------------------------------------------
+  <h2>Anomaly Detection</h2>
+  <form action="http://localhost:5010/api/anomalydetection" method="GET">
+    <div>
+      <!-- When I click this button, run RandomFrest on anomaly_detection code-->
+      <input type="checkbox" id="LogisticRegression" name="lg" value="LG">
+      <label for="LogisticRegression">Logistic Regression</label>
+    </div>
+    <br>
+    <div>
+      <!-- When I click this button, run RandomFrest on anomaly_detection code-->
+      <input type="checkbox" id="RandomForest" name="rf" value="RF">
+      <label for="RandomForest">RandomForest</label>
+    </div>
+    <br>
+    <div>
+      <!-- When I click this button, run SVM on anomaly_detection code-->
+      <input type="checkbox" id="SupportVectorMachine" name="sm" value="SVM">
+      <label for="SupportVectorMachine">SupportVectorMachine</label>
+    </div>
+    <br>
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+  -------------------------------------------------------------------------------------
+  <h2>Evaluation</h2>
+  <form action="http://localhost:5005/api/evaluation" method="GET">
+    <div>
+        <!-- When I click this button, run RandomFrest on anomaly_detection code-->
+        <input type="checkbox" id="Print" name="print" value="Print">
+        <label for="Print">Table</label>
+        <input type="checkbox" id="HeapMap" name="heatmap" value="HeatMap">
+        <label for="HeapMap">HeatMap</label>
+        <br><br>
+      <button type="submit">Start</button>
+    </div>
+  </form>
+  -------------------------------------------------------------------------------------
+
+</html>
+</body>
+
+</html>
