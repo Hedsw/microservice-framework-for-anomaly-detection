@@ -16,7 +16,7 @@ from sklearn.model_selection import cross_val_score
 
 from typing import List
 import requests
-import os
+import os, time
 
 from flask import Flask
 from flask import request, jsonify, render_template, redirect
@@ -71,6 +71,7 @@ class randomforest(Strategy):
         self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 
     def anomalydetection(self):
+        start_time = time.time()
         print("Concrete Component(RandomForest) - AnomalyDetection")
         modelcv = RandomForestClassifier(random_state=42)
         print("===========================================")
@@ -79,6 +80,8 @@ class randomforest(Strategy):
         results = model_selection.cross_val_score(modelcv, self.x_train, self.y_train, cv = self.kfold, scoring = scoring)
         print("===========================================")
         print("10-fold cross validation average accuracy of the random forest model: %.3f" % (results.mean()))
+        end_time = time.time()
+        print("Execution Time RF: ", start_time - end_time)
         return jsonify({'sucess': 200, "message":"randomforest is task is done", "cross validation average accuracy": results.mean()})
         
     def trainml(self):
@@ -104,6 +107,7 @@ class supportvectormachine(Strategy):
         self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.33, random_state=42)
     
     def anomalydetection(self):
+        start_time = time.time()
 
         print("Concrete Component(SupportVectorMachine) - AnomalyDetection")
         modelCV = SVC(random_state=42)
@@ -113,6 +117,9 @@ class supportvectormachine(Strategy):
         results = model_selection.cross_val_score(modelCV, self.x_train, self.y_train, cv = self.kfold, scoring = scoring)
         print("===========================================")
         print("10-fold cross validation average accuracy of the support vector machine model: %.3f" % (results.mean()))
+        
+        end_time = time.time()
+        print("Execution Time RF: ", start_time - end_time)
         return jsonify({'sucess': 200, "message":"svm is task is done", "cross validation average accuracy": results.mean()})
         
     def trainml(self):
@@ -139,6 +146,8 @@ class logisticregression(Strategy):
         self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 
     def anomalydetection(self):
+        start_time = time.time()
+        
         print("Concrete Component(LogisticRegression) - AnomalyDetection")
         modellrg = LogisticRegression(random_state=42)
         print("===========================================")
@@ -147,6 +156,10 @@ class logisticregression(Strategy):
         results = model_selection.cross_val_score(modellrg, self.x_train, self.y_train, cv = self.kfold, scoring = scoring)
         print("===========================================")
         print("10-fold cross validation average accuracy of the Logistic Regression model: %.3f" % (results.mean()))
+        
+        end_time = time.time()
+        print("Execution Time RF: ", start_time - end_time)
+        
         return jsonify({'sucess': 200, "message":"Logistic Regression is task is done", "cross validation average accuracy": results.mean()})
 
     def trainml(self):
