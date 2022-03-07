@@ -204,7 +204,7 @@ class Evaluation:
     @app.route('/api/evaluation', methods=['GET'], endpoint = 'evaluation')
     def evaluation():
         try:
-            Print = request.args.get('print')
+            Table = request.args.get('print')
             HeatMap = request.args.get('heatmap')
 
             if HeatMap == "HeatMap":
@@ -213,7 +213,7 @@ class Evaluation:
                 print("Client: Strategy is set to Concrete Evaluation HeatMap.")
                 context.logic()
 
-            if Print == "Print":
+            if Table == "Print":
                 context = Context(ConcreteEvaluationResult())
                 print("===========================================")
                 print("Client: Strategy is set to Concrete Evaluation Result.")

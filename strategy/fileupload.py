@@ -16,15 +16,17 @@ UPLOAD_FOLDER = '../dataset'
 app=Flask(__name__, template_folder='../templates')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
 from abc import ABC
 
 class FileFormat(ABC):
 	@abstractmethod
 	def datasetprocessor(self):
 		pass
+	def fileUpdate(self):
+		pass
 	def logic(self):
 		self.datasetprocessor()
+		self.fileUpdate()
 
 class SaveXLSX(FileFormat):
 	def __init__(self, file):
@@ -45,6 +47,8 @@ class SaveXLSX(FileFormat):
 						header=True)
 		print("===========================================")
 		print("XLSX File saved successfully")
+	def fileUpdate(self):
+		pass
 
 class SaveCSV(FileFormat):
 
@@ -58,6 +62,8 @@ class SaveCSV(FileFormat):
 		self.file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 		print("===========================================")
 		print("CSV File saved successfully")
+	def fileUpdate(self):
+		pass
 
 class FileUpload:
 	@app.route('/')
