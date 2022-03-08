@@ -48,7 +48,6 @@ class Strategy(ABC):
     
 
 class Context():
-
     def __init__(self, strategy: Strategy) -> None:
         self._strategy = strategy
 

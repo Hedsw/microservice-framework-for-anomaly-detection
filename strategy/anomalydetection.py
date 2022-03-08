@@ -63,9 +63,7 @@ class Context():
 class randomforest(Strategy):
     def __init__(self) -> None:
         self.kfold = None
-        self.paths = '../dataset/process_data.csv'
-        
-        df = pd.read_csv(self.paths)
+        df = pd.read_csv('../dataset/process_data.csv')
         y = df['fraud']
         X =  df.loc[:, df.columns != 'fraud']
         self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.33, random_state=42)
@@ -81,7 +79,7 @@ class randomforest(Strategy):
         print("===========================================")
         print("10-fold cross validation average accuracy of the random forest model: %.3f" % (results.mean()))
         end_time = time.time()
-        print("Execution Time RF: ", start_time - end_time)
+        print("Execution Time RF: ", end_time - start_time, " second")
         return jsonify({'sucess': 200, "message":"randomforest is task is done", "cross validation average accuracy": results.mean()})
         
     def trainml(self):
@@ -119,7 +117,7 @@ class supportvectormachine(Strategy):
         print("10-fold cross validation average accuracy of the support vector machine model: %.3f" % (results.mean()))
         
         end_time = time.time()
-        print("Execution Time RF: ", start_time - end_time)
+        print("Execution Time SVC: ", end_time - start_time, " second")
         return jsonify({'sucess': 200, "message":"svm is task is done", "cross validation average accuracy": results.mean()})
         
     def trainml(self):
@@ -158,7 +156,7 @@ class logisticregression(Strategy):
         print("10-fold cross validation average accuracy of the Logistic Regression model: %.3f" % (results.mean()))
         
         end_time = time.time()
-        print("Execution Time RF: ", start_time - end_time)
+        print("Execution Time LG: ", end_time - start_time, " second")
         
         return jsonify({'sucess': 200, "message":"Logistic Regression is task is done", "cross validation average accuracy": results.mean()})
 
